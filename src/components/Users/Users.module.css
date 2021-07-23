@@ -1,0 +1,28 @@
+.selectedPage {
+    font-weight: bold;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.paginatorButton {
+    display: inline-block;
+}
+
+.paginatorItems {
+    display: inline-block;
+}
+
+.pageItem {
+    border: black solid 1px;
+    padding: 2px
+}
+
+.paginatorBody {
+    display: block;
+    margin: 10px;
+}

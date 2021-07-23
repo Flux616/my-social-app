@@ -1,0 +1,17 @@
+h2 {
+    margin-bottom: 20px;
+}
+
+.friendsGrid {
+    display: grid;
+    grid-template-areas:
+    'f' 'f' 'f';
+
+    grid-template-rows: repeat();
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.item {
+    grid-area: 'f';
+}
