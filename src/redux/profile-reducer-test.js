@@ -1,7 +1,7 @@
 // Пример теста
 
 import React from 'react';
-import profileReducer, {addPostActionCreator} from "./profile-reducer";
+import profileReducer, {addPost} from "./profile-reducer";
 
 // Shared data
 
@@ -19,7 +19,7 @@ let state = {
 it ('length of posts should be incremented', () => {
 
     // 1. Test data
-    let action = addPostActionCreator('Hello')
+    let action = addPost('Hello')
 
     // 2. Action
     let newState = profileReducer(state, action)

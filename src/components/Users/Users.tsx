@@ -3,14 +3,25 @@ import classes from './Users.module.css'
 import userDefaultImage from "../../assets/images/userImageDefault.jpg";
 import {NavLink} from "react-router-dom";
 import Paginator from "./Paginator";
+import {UserType} from "../../types/types";
 
-const Users = (props) => {
+type Props = {
+    totalItemsCount: number
+    pageSize: number
+    onPageChanged: (pageNumber: number) => void
+    currentPage: number
+    users: Array<UserType>
+    unfollow: (id: number) => void
+    follow: (id: number) => void
+    followingInProgress: Array<number>
+}
 
+const Users: React.FC<Props> = ({currentPage, totalItemsCount, pageSize, onPageChanged, users, ...props}) => {
 
     return (<div>
-        <Paginator {...props}/>
+        <Paginator currentPage={currentPage} onPageChanged={onPageChanged} totalItemsCount={totalItemsCount} pageSize={pageSize}/>
 
-        {props.users.map(item => {
+        {users.map((item: any) => {
             return <div>
             <span>
                     <div>
@@ -32,10 +43,6 @@ const Users = (props) => {
                     <span>
                         <div>{item.name}</div>
                         <div>{item.status}</div>
-                    </span>
-                    <span>
-                        <div>'UK'</div>
-                        <div>'London'</div>
                     </span>
                 </span>
             </span>

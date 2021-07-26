@@ -1,34 +1,38 @@
-import {createSelector} from "reselect";
+import {AppStateType} from "./redux-store";
 
-export const getUsers = (state) => {
+export const getUsers = (state: AppStateType) => {
     return state.usersPage.users
 }
 
-export const getPageSize = (state) => {
+export const getPageSize = (state: AppStateType) => {
     return state.usersPage.pageSize
 }
 
-export const getCurrentPage = (state) => {
+export const getCurrentPage = (state: AppStateType) => {
     return state.usersPage.currentPage
 }
 
-export const getFollowingInProgress = (state) => {
+export const getFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress
 }
 
-export const getTotalUsersCount = (state) => {
+export const getTotalItemsCount = (state: AppStateType) => {
     return state.usersPage.totalItemsCount
 }
 
-//      Пример использования реселекта (сложных селекторов):
-//
-//       const getUsersSelector = (state) => {
-//           return state.usersPage.users;
-//       }
-//
-//       export const getUsersFilter = createSelector(getUsersSelector, (users) => {
-//           return users.filter( u => true)
-//       })
+export const getIsFetching = (state: AppStateType) => {
+    return state.usersPage.isFetching
+}
+
+/*      Пример использования реселекта (сложных селекторов):
+
+         const getUsersSelector = (state) => {
+             return state.usersPage.users;
+        }
+
+         export const getUsersFilter = createSelector(getUsersSelector, (users) => {
+             return users.filter( u => true)
+         })
 /*
 
     функция createSelector создает реселектор, она принимает в качестве зависимостей простые селекты из стейта (селекты без сложных вычислений),

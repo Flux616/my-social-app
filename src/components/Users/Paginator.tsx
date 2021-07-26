@@ -1,11 +1,18 @@
 import React, {useState} from 'react';
 import classes from './Users.module.css'
 
+type Props = {
+    totalItemsCount: number
+    pageSize: number
+    onPageChanged: (pageNumber: number) => void
+    currentPage: number
+    portionSize?: number
+}
 
-const Paginator = ({totalItemsCount, pageSize, onPageChanged, currentPage, portionSize = 10}) => {
+const Paginator: React.FC<Props> = ({totalItemsCount, pageSize, onPageChanged, currentPage, portionSize = 10}) => {
 
-    let pagesCount = Math.ceil(totalItemsCount / pageSize);
-    let pages = [];
+    let pagesCount: number = Math.ceil(totalItemsCount / pageSize);
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
@@ -15,7 +22,6 @@ const Paginator = ({totalItemsCount, pageSize, onPageChanged, currentPage, porti
     let leftBorderPortion = (portionNumber - 1) * portionSize;
     let rightBorderPortion = portionNumber * portionSize;
 
-    window.pages = pages;
 
     return (
         <div className={classes.paginatorBody}>
@@ -23,12 +29,11 @@ const Paginator = ({totalItemsCount, pageSize, onPageChanged, currentPage, porti
                 setPortionNumber(portionNumber - 1)
             }}>PREV</button>}
             <div className={classes.paginatorItems}>
-                {pages.filter(page => page >= leftBorderPortion && page < rightBorderPortion)
+                {pages.filter((page) => page >= leftBorderPortion && page < rightBorderPortion)
                     .map(page => {
                         return <span onClick={(event) => {
                             onPageChanged(page)
-                        }}
-                                     className={classes.pageItem + ' ' + (currentPage === page && classes.selectedPage)}>{page}</span>
+                        }} className={classes.pageItem + ' ' + (currentPage === page && classes.selectedPage)}>{page}</span>
                     })}
             </div>
             {portionNumber < portionCount && <button className={classes.paginatorButton} onClick={() => {
